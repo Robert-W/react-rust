@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[177],{5842:function(e,n,r){r.r(n),r.d(n,{default:function(){return u}});var t=r(7294);function u(e){return t.createElement("div",{className:"inner"},"Hello From Home")}}}]);

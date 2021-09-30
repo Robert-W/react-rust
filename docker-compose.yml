@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    command: cargo run
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4000:4000
+    volumes:
+      - ./app/src:/srv/src
+    command: npm start
+

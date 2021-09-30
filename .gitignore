@@ -1,0 +1,13 @@
+# System/IDE files
+.DS_Store
+.idea
+
+# Dependencies
+app/node_modules
+
+# Rust targets
+api/target
+
+# Generated code
+app/coverage
+app/assets
