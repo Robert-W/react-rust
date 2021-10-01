@@ -26,7 +26,7 @@ impl From<UserInput> for User {
     fn from(user: UserInput) -> User {
         User {
             email: user.email,
-            roles: user.roles
+            roles: user.roles,
         }
     }
 }

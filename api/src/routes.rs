@@ -1,5 +1,5 @@
-use actix_web::{web, Result, HttpResponse, Responder};
-use actix_files::{NamedFile, Files};
+use actix_files::{Files, NamedFile};
+use actix_web::{web, HttpResponse, Responder, Result};
 
 // Declare our various feature modules
 use crate::user;
@@ -16,8 +16,7 @@ pub async fn index() -> Result<NamedFile> {
 
 pub fn routes(cfg: &mut web::ServiceConfig) {
     // Setup and configure all of our routes
-    cfg
-        .service(Files::new("/public", "./assets/public"))
+    cfg.service(Files::new("/public", "./assets/public"))
         .service(
             web::scope("/api")
                 // Our healthchecks
@@ -29,7 +28,7 @@ pub fn routes(cfg: &mut web::ServiceConfig) {
                         .route("{id}", web::put().to(user::handlers::update_user))
                         .route("{id}", web::get().to(user::handlers::get_user))
                         .route("", web::post().to(user::handlers::add_user))
-                        .route("", web::get().to(user::handlers::get_users))
-                )
+                        .route("", web::get().to(user::handlers::get_users)),
+                ),
         );
 }

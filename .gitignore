@@ -11,3 +11,7 @@ api/target
 # Generated code
 app/coverage
 app/assets
+
+# Certs
+api/certs/*
+!api/certs/.gitkeep

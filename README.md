@@ -17,11 +17,13 @@ If you are running Linux, you need to install `docker`, and optionally `docker-c
 ## Running the app
 There will eventually be a way to do this with docker-compose. Right now it's too slow to re-compile the API portion. So the best way to develop is using cargo and npm.
 
-1. Open a terminal tab and `cd api`.
-2. Run `cargo run`.
-3. Open another terminal tab and `cd app`.
-4. Run `npm start`.
-5. The api serves on [https://localhost:3000](https://localhost:3000) and the front-end at [http://localhost:4000](http://localhost:4000).
+1. We need to generae self signed certs first, `cd api/certs`.
+2. Run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem`.
+3. Open a terminal tab and `cd api`.
+4. Run `cargo run`.
+5. Open another terminal tab and `cd app`.
+6. Run `npm start`.
+7. The api serves on [https://localhost:3000](https://localhost:3000) and the front-end at [http://localhost:4000](http://localhost:4000).
 
 ### Testing the Rust API
 You can use curl commands to create, get, update, and delete users. The server also has the ability to get the user's peer certificate if you want to use that for some kind of authorization in the future. To test the API, use the following curl commands:

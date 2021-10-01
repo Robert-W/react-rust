@@ -42,7 +42,6 @@ module.exports = {
 		],
 	},
 	plugins: [
-		// new StatsWriterPlugin({ filename: path.resolve('stats.json') }),
 		new MiniCssExtractPlugin({ filename: 'app.[contenthash].css' }),
 		new webpack.DefinePlugin(getEnvironment('production')),
 		new HtmlWebpackPlugin({

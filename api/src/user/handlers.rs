@@ -1,6 +1,6 @@
 use crate::user::model::{User, UserInput};
+use actix_web::web::{Data, Json, Path};
 use actix_web::{HttpResponse, Responder};
-use actix_web::web::{Data, Path, Json};
 use std::collections::HashMap;
 use std::sync::Mutex;
 
@@ -28,7 +28,11 @@ pub async fn add_user(user: Json<UserInput>, database: SharedDatabase) -> impl R
 }
 
 // Handler to update a single user
-pub async fn update_user(Path(id): Path<usize>, user: Json<UserInput>, database: SharedDatabase) -> impl Responder {
+pub async fn update_user(
+    Path(id): Path<usize>,
+    user: Json<UserInput>,
+    database: SharedDatabase,
+) -> impl Responder {
     let mut database = database.lock().unwrap();
     let user = User::from(user.into_inner());
     database.insert(id, user);
@@ -44,7 +48,10 @@ pub async fn delete_user(Path(id): Path<usize>, database: SharedDatabase) -> imp
 }
 
 // Handler to retrieve a single user by id
-pub async fn get_user(Path(id): Path<usize>, database: SharedDatabase) -> Result<User, HttpResponse> {
+pub async fn get_user(
+    Path(id): Path<usize>,
+    database: SharedDatabase,
+) -> Result<User, HttpResponse> {
     let database = database.lock().unwrap();
     // Handle possible errors with bad lookups
     if let Some(user) = database.get(&id) {
