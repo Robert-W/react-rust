@@ -26,38 +26,16 @@ function setResults(results) {
 }
 
 /**
- * @function getActiveUser
+ * @function getUser
  * @returns {Promise<object>}
  */
-service.getActiveUser = () =>
+service.getUser = () =>
 	new Promise((resolve, reject) => {
 		if (service.__results) {
 			return resolve(service.__results);
 		} else if (service.__error) {
 			return reject(service.__error);
 		} else {
-			return reject(new Error('User service login mock results/error not set'));
-		}
-	});
-
-/**
- * @function login
- * @param username
- * @param password
- * @returns {Promise<object>}
- */
-service.login = (username, password) =>
-	new Promise((resolve, reject) => {
-		// Error with http call
-		if (service.__error || username !== 'username' || password !== 'password') {
-			return reject(service.__error);
-		}
-		// Successful login
-		else if (username === 'username' && password === 'password') {
-			return resolve(service.__results);
-		}
-		// Bad configuration
-		else {
 			return reject(new Error('User service login mock results/error not set'));
 		}
 	});

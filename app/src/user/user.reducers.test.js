@@ -22,41 +22,12 @@ describe('User Reducer Tests', () => {
 			expect(results.get('error')).toBeUndefined();
 		});
 
-		test('should set the current user when a user successfully logs in', () => {
-			let response = { username: 'scooby', roles: [] };
-			let results = getUser(defaultAppState.user, { type: 'user/login', data: response });
-
-			expect(results.get('data').toJS()).toEqual(response);
-			expect(results.get('status')).toEqual('SUCCESS');
-			expect(results.get('error')).toBeUndefined();
-		});
-
 		test('should set the correct status and error when unable to get the current active user', () => {
 			let response = new Error('No active user logged in');
 			let results = getUser(defaultAppState.user, { type: 'user/get-failure', data: response });
 
 			expect(results.get('status')).toEqual('FAILED');
 			expect(results.get('error')).toEqual(response);
-		});
-
-		test('should set the correct status and error when a user failed to login', () => {
-			let response = new Error('No active user logged in');
-			let results = getUser(defaultAppState.user, { type: 'user/login-failure', data: response });
-
-			expect(results.get('status')).toEqual('FAILED');
-			expect(results.get('error')).toEqual(response);
-		});
-
-		test('should reset the user state on logout', () => {
-			let current = defaultAppState.user
-				.set('data', new Map({ username: 'Scooby Doo' }))
-				.set('status', 'SUCCESS');
-
-			let results = getUser(current, { type: 'user/logout' });
-
-			expect(results.get('data')).not.toBe(current.get('data'));
-			expect(results.get('data')).toBe(defaultAppState.user.get('data'));
-			expect(results.get('status')).toBe('INCOMPLETE');
 		});
 	});
 });

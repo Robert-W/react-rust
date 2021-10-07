@@ -1,9 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const getEnvironment = require('./webpack.env');
+const setEnvironment = require('./webpack.env');
 const webpack = require('webpack');
 const path = require('path');
 
 let public = path.resolve(__dirname, 'public');
+
+let environment = {
+	BABEL_ENV: 'development',
+	NODE_ENV: 'development',
+};
 
 module.exports = {
 	target: ['web', 'es5'],
@@ -38,7 +43,7 @@ module.exports = {
 		port: 4000
 	},
 	plugins: [
-		new webpack.DefinePlugin(getEnvironment('development')),
+		new webpack.DefinePlugin(setEnvironment(environment)),
 		new HtmlWebpackPlugin({
 			template: 'src/index.html'
 		}),
