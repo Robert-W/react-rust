@@ -1,24 +1,29 @@
 use crate::user::model::{User, UserInput};
 use actix_web::web::{Data, Json, Path};
 use actix_web::{HttpResponse, Responder};
+use actix_web::{get, put, post, delete};
 use std::collections::HashMap;
 use std::sync::Mutex;
 
 type SharedDatabase = Data<Mutex<HashMap<usize, User>>>;
 
-// Handler to retrieve all of our user
-pub async fn get_users(database: SharedDatabase) -> impl Responder {
+// Handler to retrieve a single user by id
+#[get("/users/{id}")]
+pub async fn get_user(
+    Path(id): Path<usize>,
+    database: SharedDatabase,
+) -> Result<User, HttpResponse> {
     let database = database.lock().unwrap();
-    let mut users: Vec<User> = Vec::new();
-    // Iterate through our hash map
-    for user in database.values() {
-        users.push(user.clone());
+    // Handle possible errors with bad lookups
+    if let Some(user) = database.get(&id) {
+        Ok(user.clone())
+    } else {
+        Err(HttpResponse::NotFound().body("Not Found"))
     }
-    // Return all of our users
-    Json(users)
 }
 
 // Handler to create a single user
+#[post("/users/")]
 pub async fn add_user(user: Json<UserInput>, database: SharedDatabase) -> impl Responder {
     let mut database = database.lock().unwrap();
     let user = User::from(user.into_inner());
@@ -28,6 +33,7 @@ pub async fn add_user(user: Json<UserInput>, database: SharedDatabase) -> impl R
 }
 
 // Handler to update a single user
+#[put("/users/{id}")]
 pub async fn update_user(
     Path(id): Path<usize>,
     user: Json<UserInput>,
@@ -40,6 +46,7 @@ pub async fn update_user(
 }
 
 // Handler to delete a single user
+#[delete("/users/{id}")]
 pub async fn delete_user(Path(id): Path<usize>, database: SharedDatabase) -> impl Responder {
     let mut database = database.lock().unwrap();
     database.remove(&id);
@@ -47,16 +54,15 @@ pub async fn delete_user(Path(id): Path<usize>, database: SharedDatabase) -> imp
     HttpResponse::NoContent()
 }
 
-// Handler to retrieve a single user by id
-pub async fn get_user(
-    Path(id): Path<usize>,
-    database: SharedDatabase,
-) -> Result<User, HttpResponse> {
+// Handler to retrieve all of our user
+#[get("/users/")]
+pub async fn get_users(database: SharedDatabase) -> impl Responder {
     let database = database.lock().unwrap();
-    // Handle possible errors with bad lookups
-    if let Some(user) = database.get(&id) {
-        Ok(user.clone())
-    } else {
-        Err(HttpResponse::NotFound().body("Not Found"))
+    let mut users: Vec<User> = Vec::new();
+    // Iterate through our hash map
+    for user in database.values() {
+        users.push(user.clone());
     }
+    // Return all of our users
+    Json(users)
 }

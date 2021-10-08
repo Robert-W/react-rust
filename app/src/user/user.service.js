@@ -10,6 +10,6 @@ export default {
 	 * @description Get the active user
 	 */
 	getUser() {
-		return superagent.get('/api/users/1');
+		return superagent.get('https://localhost:3000/api/users/1');
 	},
 };

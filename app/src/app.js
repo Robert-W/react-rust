@@ -3,11 +3,8 @@ import { defaultAppState } from './config';
 import Body from './core/Body';
 import store from './store';
 
-import { createTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import blue from '@material-ui/core/colors/blue';
-import pink from '@material-ui/core/colors/pink';
-import red from '@material-ui/core/colors/red';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { blue, pink, red } from '@mui/material/colors'
 
 import './app.scss';
 
@@ -16,15 +13,10 @@ import './app.scss';
  */
 let theme = createTheme({
 	palette: {
-		type: 'light',
 		primary: blue,
 		secondary: pink,
 		error: red,
-		tonalOffset: 0.2,
-	},
-	typography: {
-		useNextVariants: true,
-	},
+	}
 });
 
 /**
