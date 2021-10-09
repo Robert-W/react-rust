@@ -12,7 +12,13 @@ export default function Links({ routes = [] }) {
 				.filter((route) => route.path)
 				.map((route) => (
 					<li key={route.path}>
-						<NavLink className="navigation-link" activeClassName="active" to={route.path} exact={true}>
+						<NavLink
+							aria-label={route.ariaLabel}
+							className="navigation-link"
+							activeClassName="active"
+							to={route.path}
+							exact={true}
+						>
 							<span className="hidden">{route.name}</span>
 							<route.icon className="navigation-link__icon" />
 						</NavLink>

@@ -20,6 +20,7 @@ export default [
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "home" */ './entries/home/index')),
 		requiredRoles: new List(),
+		ariaLabel: 'View the home page',
 		icon: Home,
 		name: 'Home',
 		exact: true,
@@ -29,6 +30,7 @@ export default [
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "dashboard" */ './entries/dashboard/index')),
 		requiredRoles: new List(['admin']),
+		ariaLabel: 'View the dashboard',
 		icon: Dashboard,
 		name: 'Dashboard',
 		exact: true,
@@ -38,6 +40,7 @@ export default [
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "info" */ './entries/info/index')),
 		requiredRoles: new List(),
+		ariaLabel: 'Read more about this application',
 		icon: Info,
 		name: 'Info',
 		exact: true,

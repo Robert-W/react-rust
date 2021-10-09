@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { defaultAppState } from './config';
-import Body from './core/Body';
+import Body from './components/Body';
 import store from './store';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { blue, pink, red } from '@mui/material/colors'
+import { blue, pink, red } from '@mui/material/colors';
 
 import './app.scss';
 
@@ -16,7 +16,7 @@ let theme = createTheme({
 		primary: blue,
 		secondary: pink,
 		error: red,
-	}
+	},
 });
 
 /**
