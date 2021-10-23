@@ -91,10 +91,8 @@ docker run -p 3000:3000 \
 - Add a MongoDB instance to docker-compose so the Rust API can use a real database instead of a HashMap.
 - Unit tests for Rust.
 - Documentation for Rust (and API documentation that could be served somehow).
-- Document the SSL authentication using peer certificates and how to test with cURL, currently it is documented in the `/api/src/ssl.rs`.
 - Add a default user to the Map so the React app can query it and show a full end to end workflow.
-- Add ID to user model with real UUID's
-- Currently their are old assets in the api/assets directory. This is because the rust api currently uses that for serving the front end of the application. In development mode, the webpack dev server serves on port 
+- Add ID to user model with real UUID's 
 - Improve build.sh performance, creating a production build currently takes 10-12 minutes on a decently powerful laptop.
 
 ## NOTES
