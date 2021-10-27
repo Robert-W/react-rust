@@ -1,6 +1,6 @@
 use actix_files::{Files, NamedFile};
+use actix_web::get;
 use actix_web::{web, HttpResponse, Responder, Result};
-use actix_web::{get};
 
 // Declare our various feature modules
 use crate::user;
@@ -28,6 +28,6 @@ pub fn routes(cfg: &mut web::ServiceConfig) {
                 .service(user::handlers::add_user)
                 .service(user::handlers::update_user)
                 .service(user::handlers::delete_user)
-                .service(user::handlers::get_users)
+                .service(user::handlers::get_users),
         );
 }
