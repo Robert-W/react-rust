@@ -21,12 +21,8 @@ async fn main() -> std::io::Result<()> {
 
     // Setup our requirements foe SSL
     let mut builder = SslAcceptor::mozilla_intermediate(SslMethod::tls()).unwrap();
-    builder
-        .set_private_key_file(env::var("SSL_KEY").unwrap(), SslFiletype::PEM)
-        .unwrap();
-    builder
-        .set_certificate_chain_file(env::var("SSL_CERT").unwrap())
-        .unwrap();
+    builder.set_private_key_file(env::var("SSL_KEY").unwrap(), SslFiletype::PEM).unwrap();
+    builder.set_certificate_chain_file(env::var("SSL_CERT").unwrap()).unwrap();
     builder.set_verify_callback(SslVerifyMode::PEER, ssl::validate);
 
     // Create a shared database, for local testing
