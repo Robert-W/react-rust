@@ -1,8 +1,8 @@
 import service from './user.service';
 
 /**
- * @function getActiveUser
- * @description Ask the server if we have an already authenticated user
+ * @function getUser
+ * @description Placeholder to get a user from the server
  */
 export function getUser() {
 	return (dispatch) => {

@@ -18,14 +18,14 @@ If you are running Linux, you need to install `docker`, and optionally `docker-c
 There will eventually be a way to do this with docker-compose. Right now it's too slow to re-compile the API portion. So the best way to develop is using cargo and npm.
 
 1. We need to generate self signed certs first, `cd api/certs`.
-2. Run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem`.
-3. Open a terminal tab and `cd api`.
-4. Run `cargo run`.
-5. Open another terminal tab and `cd app`.
-6. Run `npm start`.
-7. The api serves on [https://localhost:3000](https://localhost:3000) and the front-end at [http://localhost:4000](http://localhost:4000).
+1. Run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem`.
+1. Open a terminal tab and `cd api`.
+1. Run `cargo run`.
+1. Open another terminal tab and `cd app`.
+1. Run `npm start`.
+1. The api serves on [https://localhost:3000](https://localhost:3000) and the front-end at [http://localhost:4000](http://localhost:4000).
 
-### Testing the Rust API
+## Testing the Rust API
 You can use curl commands to create, get, update, and delete users. The server also has the ability to get the user's peer certificate if you want to use that for some kind of authorization in the future. To test the API, use the following curl commands:
 
 1. Create a user
@@ -36,16 +36,16 @@ You can use curl commands to create, get, update, and delete users. The server a
         -X POST \
         -k
     ```
-2. Get all users
+1. Get all users
     ```shell
     curl https://localhost:3000/api/users -k
     ```
-3. Get a single user
+1. Get a single user
     ```shell
     curl https://localhost:3000/api/users/0 -k
     ```
     > NOTE: 0 represents the id here. A user's id for the HashMap is based on the length of the HashMap so its far from good. There is a TODO to add an id to the user model and use UUID for it.
-4. Update a user
+1. Update a user
     ```shell
     curl https://localhost:3000/api/users/0 \
         -d '{"email":"joe.doe@gmail.com", "roles":["USER"]}' \
@@ -53,7 +53,7 @@ You can use curl commands to create, get, update, and delete users. The server a
         -X PUT \
         -k
     ```
-5. Delete a user
+1. Delete a user
     ```shell
     curl https://localhost:3000/api/users/0 -X DELETE -k
     ```
@@ -91,7 +91,6 @@ docker run -p 3000:3000 \
 - Add a MongoDB instance to docker-compose so the Rust API can use a real database instead of a HashMap.
 - Unit tests for Rust.
 - Documentation for Rust (and API documentation that could be served somehow).
-- Add a default user to the Map so the React app can query it and show a full end to end workflow.
 - Add ID to user model with real UUID's 
 - Improve build.sh performance, creating a production build currently takes 10-12 minutes on a decently powerful laptop.
 

@@ -7,9 +7,9 @@ import superagent from 'superagent';
 export default {
 	/**
 	 * @function getUser
-	 * @description Get the active user
+	 * @description Get a user
 	 */
-	getUser() {
-		return superagent.get('https://localhost:3000/api/users/1');
+	getUser(id) {
+		return superagent.get(`https://localhost:3000/api/users/${id}`);
 	},
 };

@@ -17,7 +17,7 @@ For this example, we are going to generate a cert, hit the `/api/users/` endpoin
     }
     ```
 
-1. We're all set and ready to test it now. Let's start by creating some peer certificates in the `api/certs` directory.
+1. Let's create some peer certificates in the `api/certs` directory.
     ```shell
     cd api/certs
 
@@ -32,7 +32,7 @@ For this example, we are going to generate a cert, hit the `/api/users/` endpoin
     openssl x509 -req -in client-req.pem -set_serial 01 -out client-cert.pem -CA client-ca.pem -CAkey ca-private.key
     ```
 
-1. Next let's create a user like normal, without the certificates
+1. Create a user without the certificates
     ```shell
     curl https://localhost:3000/api/users \
         -d '{"email":"joe.doe@gmail.com", "roles":["ADMIN"]}' \
@@ -41,7 +41,7 @@ For this example, we are going to generate a cert, hit the `/api/users/` endpoin
         -k
     ```
 
-1. Finally, lets get the user we just created, but with the certs we just created included in the request. We can check the logs from the Rust server to verify we got the cert and were able to log it.
+1. Fetch the user we just created with the certs we just created. We can check the logs from the Rust server to verify we got the cert and were able to log it.
     ```shell
     curl https://localhost:3000/api/users/0 \
         --cacert client-ca.pem \

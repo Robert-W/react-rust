@@ -1,7 +1,7 @@
 use crate::user::model::{User, UserInput};
 use actix_web::web::{Data, Json, Path};
+use actix_web::{delete, get, post, put};
 use actix_web::{HttpResponse, Responder};
-use actix_web::{get, put, post, delete};
 use std::collections::HashMap;
 use std::sync::Mutex;
 
@@ -23,7 +23,7 @@ pub async fn get_user(
 }
 
 // Handler to create a single user
-#[post("/users/")]
+#[post("/users")]
 pub async fn add_user(user: Json<UserInput>, database: SharedDatabase) -> impl Responder {
     let mut database = database.lock().unwrap();
     let user = User::from(user.into_inner());
@@ -55,7 +55,7 @@ pub async fn delete_user(Path(id): Path<usize>, database: SharedDatabase) -> imp
 }
 
 // Handler to retrieve all of our user
-#[get("/users/")]
+#[get("/users")]
 pub async fn get_users(database: SharedDatabase) -> impl Responder {
     let database = database.lock().unwrap();
     let mut users: Vec<User> = Vec::new();

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getUser } from '../user/user.actions';
 import Switch from '../routing/Switch';
 import Links from '../routing/Links';
 import routes from '../routes';
 import Loader from './Loader';
-import store from '../store';
 
 /**
  * @function Body
@@ -16,7 +14,9 @@ export default function Body(props) {
 
 	// Run this effect when the components mounts, only once
 	useEffect(() => {
-		store.dispatch(getUser()).then(() => setIsLoading(false));
+		// This would be a good place to get our current user if we are using peer certificates for authentication
+		// or do some other setup stuff. Depending on what your needs are
+		setIsLoading(false);
 	}, []);
 
 	return (
