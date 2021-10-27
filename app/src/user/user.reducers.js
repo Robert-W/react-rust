@@ -15,22 +15,15 @@ export function getUser(state = defaultAppState.user, action) {
 		// User has logged in successfully or we were able to successfully
 		// get an authenticated user through another means (PKI, Session, etc.)
 		case 'user/get':
-		case 'user/login':
 			return state.withMutations((user) => {
-				user.set('status', 'SUCCESS')
-					.set('error', undefined)
-					.set('data', fromJS(data));
+				user.set('status', 'SUCCESS').set('error', undefined).set('data', fromJS(data));
 			});
 		// User was unable to login for some reason or
 		// we are unable to get the current user
 		case 'user/get-failure':
-		case 'user/login-failure':
 			return state.withMutations((user) => {
-				user.set('status', 'FAILED').set('error', data);
+				user.set('status', 'ERROR').set('error', data);
 			});
-		// User logging out, reset all defaults
-		case 'user/logout':
-			return defaultAppState.user;
 		default:
 			return state;
 	}

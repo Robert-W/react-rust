@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[966],{2620:function(e,n,a){a.r(n),a.d(n,{default:function(){return t}});var r=a(7294);function t(e){return r.createElement("div",{className:"inner"},"Hello From Dashboard")}}}]);

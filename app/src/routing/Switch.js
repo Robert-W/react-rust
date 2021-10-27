@@ -1,6 +1,6 @@
 import { Switch as ReactRouterSwitch } from 'react-router-dom';
+import Loader from '../components/Loader';
 import SecureRoute from './SecureRoute';
-import Loader from '../core/Loader';
 import React from 'react';
 
 /**

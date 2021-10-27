@@ -6,6 +6,7 @@ use std::env;
 use std::collections::HashMap;
 use std::sync::Mutex;
 
+mod cors;
 mod routes;
 mod ssl;
 mod user;
@@ -34,6 +35,7 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
+            .wrap(cors::cors_wrapper())
             .wrap(Logger::default())
             .app_data(shared.clone())
             .configure(routes::routes)

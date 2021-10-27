@@ -1,12 +1,17 @@
 const InlineStylePlugin = require('./plugins/inline-style-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const getEnvironment = require('./webpack.env');
+const setEnvironment = require('./webpack.env');
 const webpack = require('webpack');
 const path = require('path');
 
 let publicDirectoryName = 'public';
 let output = path.resolve(__dirname, 'assets');
+
+let environment = {
+	BABEL_ENV: 'production',
+	NODE_ENV: 'production',
+};
 
 /**
  * @name exports
@@ -43,7 +48,7 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({ filename: 'app.[contenthash].css' }),
-		new webpack.DefinePlugin(getEnvironment('production')),
+		new webpack.DefinePlugin(setEnvironment(environment)),
 		new HtmlWebpackPlugin({
 			inject: 'body',
 			template: 'src/index.html',

@@ -6,19 +6,10 @@ import superagent from 'superagent';
  */
 export default {
 	/**
-	 * @function login
-	 * @description Authenticate a user
-	 * @param {string} username
-	 * @param {string} password
+	 * @function getUser
+	 * @description Get a user
 	 */
-	login(username, password) {
-		return superagent.post('/api/user/login').send({ username, password });
-	},
-	/**
-	 * @function getActiveUser
-	 * @description Get the active user
-	 */
-	getActiveUser() {
-		return superagent.get('/api/user/active');
+	getUser(id) {
+		return superagent.get(`https://localhost:3000/api/users/${id}`);
 	},
 };

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 
 /**
@@ -18,5 +17,9 @@ export default function Loader() {
 		return () => clearTimeout(timeout);
 	}, []);
 
-	return isPastDelay ? <span className="loading-indicator">Loading ... </span> : null;
+	return isPastDelay ? (
+		<span aria-live="assertive" className="loading-indicator">
+			Loading ...{' '}
+		</span>
+	) : null;
 }

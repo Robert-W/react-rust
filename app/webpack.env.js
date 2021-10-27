@@ -1,18 +1,13 @@
 /**
- * @function getEnvironment
- * @description Define feature flags available during a webpack compilation
- * @return {object} environment settings
+ * @function setEnvironment
+ * @description Take environment variables and expose them to the client during compilation
+ * @param {object} environment - Map of environment variables
+ * @return {object} environment settings set for webpack
  */
-module.exports = function getEnvironment(mode) {
-	// Feature flags that can be accessed as environment variables in client
-	let flags = {
-		BABEL_ENV: mode || 'production',
-		NODE_ENV: mode || 'production',
-	};
-
+module.exports = function setEnvironment(environment = {}) {
 	return {
-		'process.env': Object.keys(flags).reduce((env, key) => {
-			env[key] = JSON.stringify(flags[key]);
+		'process.env': Object.keys(environment).reduce((env, key) => {
+			env[key] = JSON.stringify(environment[key]);
 			return env;
 		}, {}),
 	};
