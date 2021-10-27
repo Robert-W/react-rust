@@ -22,7 +22,7 @@ export function getUser(state = defaultAppState.user, action) {
 		// we are unable to get the current user
 		case 'user/get-failure':
 			return state.withMutations((user) => {
-				user.set('status', 'FAILED').set('error', data);
+				user.set('status', 'ERROR').set('error', data);
 			});
 		default:
 			return state;

@@ -26,7 +26,7 @@ describe('User Reducer Tests', () => {
 			let response = new Error('No active user logged in');
 			let results = getUser(defaultAppState.user, { type: 'user/get-failure', data: response });
 
-			expect(results.get('status')).toEqual('FAILED');
+			expect(results.get('status')).toEqual('ERROR');
 			expect(results.get('error')).toEqual(response);
 		});
 	});
