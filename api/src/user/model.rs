@@ -2,6 +2,7 @@ use actix_web::{Error, HttpRequest, HttpResponse, Responder};
 use futures::future::{ready, Ready};
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
+use uuid::Uuid;
 
 // Hash Set that we will use to validate any writes/updates
 // pub fn validate_roles(input: HashSet<String>) -> bool {
@@ -25,6 +26,7 @@ pub struct UserInput {
 impl From<UserInput> for User {
     fn from(user: UserInput) -> User {
         User {
+            id: Uuid::new_v4(),
             email: user.email,
             roles: user.roles,
         }
@@ -34,6 +36,7 @@ impl From<UserInput> for User {
 // Create our user
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct User {
+    pub(crate) id: Uuid,
     email: String,
     roles: HashSet<String>,
 }

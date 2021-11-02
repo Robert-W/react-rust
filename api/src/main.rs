@@ -30,7 +30,7 @@ async fn main() -> std::io::Result<()> {
     builder.set_verify_callback(SslVerifyMode::PEER, ssl::validate);
 
     // Create a shared database, for local testing
-    let shared: web::Data<Mutex<HashMap<usize, user::model::User>>> =
+    let shared: web::Data<Mutex<HashMap<String, user::model::User>>> =
         web::Data::new(Mutex::new(HashMap::new()));
 
     HttpServer::new(move || {
