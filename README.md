@@ -21,7 +21,7 @@ There will eventually be a way to do this with docker-compose. Right now it's to
 1. Run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem`.
 1. Open a terminal tab and `cd api`.
 1. Run `cargo run`.
-1. Open another terminal tab and `cd app`.
+1. Open another terminal tab and `cd site`.
 1. Run `npm start`.
 1. The api serves on [https://localhost:3000](https://localhost:3000) and the front-end at [http://localhost:4000](http://localhost:4000).
 

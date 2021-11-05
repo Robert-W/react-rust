@@ -8,15 +8,15 @@ services:
     ports:
       - 3000:3000
     command: cargo run
-  app:
+  site:
     build:
-      context: app
+      context: site
       dockerfile: Dockerfile
     environment:
       NODE_ENV: development
     ports:
       - 4000:4000
     volumes:
-      - ./app/src:/srv/src
+      - ./site/src:/srv/src
     command: npm start
 

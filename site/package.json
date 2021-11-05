@@ -1,5 +1,5 @@
 {
-	"name": "app",
+	"name": "site",
 	"version": "0.1.0",
 	"description": "Front-end UI code for our application",
 	"main": "src/index.js",

@@ -3,14 +3,14 @@
 .idea
 
 # Dependencies
-app/node_modules
+site/node_modules
 
 # Rust targets
 api/target
 
 # Generated code
-app/coverage
-app/assets
+site/coverage
+site/assets
 
 # Certs
 api/certs/*

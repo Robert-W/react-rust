@@ -4,7 +4,7 @@ FROM rust:latest as rust
 RUN rustup target add x86_64-unknown-linux-musl
 RUN apt update && apt install -y musl-tools musl-dev pkg-config libssl-dev
 RUN update-ca-certificates
-# Copy over our app and build the release
+# Copy over our api and build the release
 COPY ./api/ /srv/api/
 WORKDIR /srv/api
 # Set some variables necesary for the build
@@ -15,10 +15,10 @@ RUN cargo build --target x86_64-unknown-linux-musl --features vendored --release
 # Then build our node layer
 FROM node:16-alpine as node
 WORKDIR /srv
-COPY app/package.json app/webpack.env.js app/webpack.prod.js /srv/
+COPY site/package.json site/webpack.env.js site/webpack.prod.js /srv/
 RUN npm install --production
-COPY app/plugins /srv/plugins/
-COPY app/src /srv/src/
+COPY site/plugins /srv/plugins/
+COPY site/src /srv/src/
 RUN npm run build
 
 
