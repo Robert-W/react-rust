@@ -1,3 +1,4 @@
+import { Icon, Tooltip } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 
@@ -12,16 +13,17 @@ export default function Links({ routes = [] }) {
 				.filter((route) => route.path)
 				.map((route) => (
 					<li key={route.path}>
-						<NavLink
-							aria-label={route.ariaLabel}
-							className="navigation-link"
-							activeClassName="active"
-							to={route.path}
-							exact={true}
-						>
-							<span className="hidden">{route.name}</span>
-							<route.icon className="navigation-link__icon" />
-						</NavLink>
+						<Tooltip label={route.ariaLabel} placement="right" hasArrow>
+							<NavLink
+								aria-label={route.ariaLabel}
+								className="navigation-link"
+								activeClassName="active"
+								to={route.path}
+								exact={true}
+							>
+								<Icon as={route.icon} h={6} w={6} className="navigation-link__icon" />
+							</NavLink>
+						</Tooltip>
 					</li>
 				))}
 		</React.Fragment>

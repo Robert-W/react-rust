@@ -1,23 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { defaultAppState } from './config';
 import Body from './components/Body';
 import store from './store';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { blue, pink, red } from '@mui/material/colors';
 
 import './app.scss';
-
-/**
- * Material UI Theme
- */
-let theme = createTheme({
-	palette: {
-		primary: blue,
-		secondary: pink,
-		error: red,
-	},
-});
 
 /**
  * @function App
@@ -37,10 +25,10 @@ export default function App() {
 	}, []);
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ChakraProvider>
 			<header className="header">Default Settings</header>
 			<Body {...state} />
 			<footer className="footer">Default Settings</footer>
-		</ThemeProvider>
+		</ChakraProvider>
 	);
 }

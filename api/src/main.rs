@@ -1,9 +1,9 @@
 use actix_web::middleware::Logger;
 use actix_web::{web, App, HttpServer};
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod, SslVerifyMode};
-use std::env;
 
 use std::collections::HashMap;
+use std::env;
 use std::sync::Mutex;
 
 mod cors;
