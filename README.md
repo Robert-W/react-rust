@@ -18,7 +18,7 @@ If you are running Linux, you need to install `docker`, and optionally `docker-c
 There will eventually be a way to do this with docker-compose. Right now it's too slow to re-compile the API portion. So the best way to develop is using cargo and npm.
 
 1. We need to generate self signed certs first, `cd api/certs`.
-1. Run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem`.
+1. Run `openssl req -x509 -nodes -newkey rsa:4096 -keyout key.pem -out cert.pem`.
 1. Open a terminal tab and `cd api`.
 1. Run `cargo run`.
 1. Open another terminal tab and `cd site`.
