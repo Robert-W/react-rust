@@ -1,6 +1,4 @@
-import Dashboard from '@mui/icons-material/Dashboard';
-import Home from '@mui/icons-material/Home';
-import Info from '@mui/icons-material/Info';
+import { MdInfo, MdHome, MdDashboard } from 'react-icons/md';
 import { List } from 'immutable';
 import React from 'react';
 
@@ -21,7 +19,7 @@ export default [
 		component: React.lazy(() => import(/* webpackChunkName: "home" */ './entries/home/index')),
 		requiredRoles: new List(),
 		ariaLabel: 'View the home page',
-		icon: Home,
+		icon: MdHome,
 		name: 'Home',
 		exact: true,
 		path: '/',
@@ -31,7 +29,7 @@ export default [
 		component: React.lazy(() => import(/* webpackChunkName: "dashboard" */ './entries/dashboard/index')),
 		requiredRoles: new List(['admin']),
 		ariaLabel: 'View the dashboard',
-		icon: Dashboard,
+		icon: MdDashboard,
 		name: 'Dashboard',
 		exact: true,
 		path: '/dashboard',
@@ -41,7 +39,7 @@ export default [
 		component: React.lazy(() => import(/* webpackChunkName: "info" */ './entries/info/index')),
 		requiredRoles: new List(),
 		ariaLabel: 'Read more about this application',
-		icon: Info,
+		icon: MdInfo,
 		name: 'Info',
 		exact: true,
 		path: '/info',
