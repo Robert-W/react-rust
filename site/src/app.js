@@ -4,7 +4,6 @@ import { defaultAppState } from './config';
 import Body from './components/Body';
 import store from './store';
 
-
 import './app.scss';
 
 /**
