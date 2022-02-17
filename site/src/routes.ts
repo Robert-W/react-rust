@@ -1,6 +1,17 @@
 import { MdInfo, MdHome, MdDashboard } from 'react-icons/md';
+import { IconType } from 'react-icons';
 import { List } from 'immutable';
 import React from 'react';
+
+export interface RouteConfig {
+  component: any,
+  requiredRoles: List<string>,
+  ariaLabel?: string,
+  icon?: IconType,
+  name?: string,
+  path?: string,
+  exact?: boolean,
+}
 
 /**
  * @exports
@@ -13,7 +24,7 @@ import React from 'react';
  *      perspective, they wont know the pages exist and can't enter the url otherwise
  *      the router will take them to a 404 not found page.
  */
-export default [
+const Routes: Array<RouteConfig> = [
 	{
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "home" */ './entries/home/index')),
@@ -50,3 +61,5 @@ export default [
 		requiredRoles: new List(),
 	},
 ];
+
+export default Routes;

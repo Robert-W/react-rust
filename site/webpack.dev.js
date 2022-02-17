@@ -15,7 +15,7 @@ module.exports = {
 	mode: 'development',
 	profile: true,
 	entry: {
-		index: './src/index.js',
+		index: './src/index.tsx',
 	},
 	output: {
 		filename: '[name].bundle.js',
@@ -23,10 +23,13 @@ module.exports = {
 		clean: true,
 	},
 	devtool: 'inline-source-map',
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js']
+	},
 	module: {
 		rules: [
 			{
-				test: /\.js?$/,
+				test: /\.(ts|js)x?$/,
 				loader: 'babel-loader',
 				exclude: /(node_modules)/,
 			},

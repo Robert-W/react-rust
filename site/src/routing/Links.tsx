@@ -2,11 +2,14 @@ import { Icon, Tooltip } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 
+
+import { RouteConfig } from '../routes';
+
 /**
  * @function Links
  * @description Generates a set of navigation links
  */
-export default function Links({ routes = [] }) {
+export default function Links({ routes = [] }: { routes: Array<RouteConfig> }) {
 	return (
 		<React.Fragment>
 			{routes
@@ -18,7 +21,7 @@ export default function Links({ routes = [] }) {
 								aria-label={route.ariaLabel}
 								className="navigation-link"
 								activeClassName="active"
-								to={route.path}
+								to={route.path!}
 								exact={true}
 							>
 								<Icon as={route.icon} h={6} w={6} className="navigation-link__icon" />
