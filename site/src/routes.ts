@@ -28,7 +28,7 @@ const Routes: Array<RouteConfig> = [
 	{
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "home" */ './entries/home/index')),
-		requiredRoles: new List(),
+		requiredRoles: List(),
 		ariaLabel: 'View the home page',
 		icon: MdHome,
 		name: 'Home',
@@ -38,7 +38,7 @@ const Routes: Array<RouteConfig> = [
 	{
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "dashboard" */ './entries/dashboard/index')),
-		requiredRoles: new List(['admin']),
+		requiredRoles: List(['admin']),
 		ariaLabel: 'View the dashboard',
 		icon: MdDashboard,
 		name: 'Dashboard',
@@ -48,7 +48,7 @@ const Routes: Array<RouteConfig> = [
 	{
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "info" */ './entries/info/index')),
-		requiredRoles: new List(),
+		requiredRoles: List(),
 		ariaLabel: 'Read more about this application',
 		icon: MdInfo,
 		name: 'Info',
@@ -58,7 +58,7 @@ const Routes: Array<RouteConfig> = [
 	{
 		/* istanbul ignore next line */
 		component: React.lazy(() => import(/* webpackChunkName: "not-found" */ './entries/not-found/index')),
-		requiredRoles: new List(),
+		requiredRoles: List(),
 	},
 ];
 
