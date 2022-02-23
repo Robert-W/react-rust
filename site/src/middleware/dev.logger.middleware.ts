@@ -1,3 +1,5 @@
+import { Action, Dispatch, Store } from "redux";
+
 const STYLE = {
 	action: 'font-weight:bold;font-size:1.1em',
 	state: 'color:blue;',
@@ -9,9 +11,9 @@ const STYLE = {
  * @param store
  * @returns {function}
  */
-export default function logger(store) {
-	return (next) => {
-		return (action) => {
+export default function logger(store: Store) {
+	return (next: Dispatch<Action>) => {
+		return (action: Action) => {
 			let result = next(action);
 			console.log(`%c ${action.type}:`, STYLE.action, action);
 			console.log('%c $next state', STYLE.state, store.getState());

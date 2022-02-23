@@ -8,7 +8,7 @@ import Loader from './Loader';
  * @function Body
  * @description Main body of our application
  */
-export default function Body(props) {
+export default function Body(props: any) {
 	// Set our default state
 	let [isLoading, setIsLoading] = useState(false);
 

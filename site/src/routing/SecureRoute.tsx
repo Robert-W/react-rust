@@ -7,7 +7,7 @@ import React from 'react';
  * the UI but they do not have permission to view it
  * @param {*} props
  */
-export default function SecureRoute(props) {
+export default function SecureRoute(props: any) {
 	let { path, exact, render, user, requiredRoles, ...rest } = props;
 
 	return (

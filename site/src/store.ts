@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import loggerMiddleware from './middleware/dev.logger.middleware';
 import asyncMiddleware from './middleware/async.middleware';
 import { getUser } from './user/user.reducers';
+import { defaultAppState } from './config';
 
 // Add the async middleware
 const middleware = [asyncMiddleware];
@@ -17,4 +18,4 @@ const reducers = combineReducers({
 	user: getUser,
 });
 
-export default createStore(reducers, applyMiddleware(...middleware));
+export default createStore(reducers, defaultAppState, applyMiddleware(...middleware));

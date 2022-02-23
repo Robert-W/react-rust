@@ -1,3 +1,6 @@
+import { Store, Dispatch, Action } from "redux";
+
+
 /**
  * @function asyncMiddleware
  * @description Middleware to support asynchronous actions. It also passes in a getState method
@@ -5,8 +8,8 @@
  * @param store
  * @returns {function}
  */
-export default function asyncMiddleware(store) {
-	return (next) => {
-		return (action) => (typeof action === 'function' ? action(store.dispatch, store.getState) : next(action));
+export default function asyncMiddleware(store: Store) {
+	return (next: Dispatch<Action>) => {
+		return (action: any) => (typeof action === 'function' ? action(store.dispatch, store.getState) : next(action));
 	};
 }
