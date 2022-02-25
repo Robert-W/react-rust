@@ -4,15 +4,15 @@ import React from 'react';
 import App from './app';
 
 /**
-  * @function launch
-  * @description Initialize our app
-  */
+ * @function launch
+ * @description Initialize our app
+ */
 function launch() {
   ReactDom.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>,
-    document.getElementById('app-root')
+    document.getElementById('app-root'),
   );
 }
 

@@ -1,21 +1,23 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
 import loggerMiddleware from './middleware/dev.logger.middleware';
-import asyncMiddleware from './middleware/async.middleware';
-import { getUser } from './user/user.reducers';
-import { defaultAppState } from './config';
+import { configureStore, Middleware } from '@reduxjs/toolkit';
+import { userReducers } from './user/user.slice';
 
-// Add the async middleware
-const middleware = [asyncMiddleware];
+const middleware: Array<Middleware> = [];
 
 // This logger is ideal for development, but not for production
 // It will log all actions and state updates to the console
 if (process.env.NODE_ENV !== 'production') {
-	middleware.push(loggerMiddleware);
+  middleware.push(loggerMiddleware);
 }
 
-// Configure our reducers
-const reducers = combineReducers({
-	user: getUser,
+let store = configureStore({
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
+  reducer: {
+    user: userReducers,
+  },
 });
 
-export default createStore(reducers, defaultAppState, applyMiddleware(...middleware));
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

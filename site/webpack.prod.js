@@ -28,6 +28,9 @@ module.exports = {
 		publicPath: `/${publicDirectoryName}/`,
 		filename: '[name].[contenthash].js',
 	},
+	resolve: {
+		extensions: ['tsx', 'ts', 'js']
+	},
 	module: {
 		rules: [
 			{

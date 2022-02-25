@@ -5,5 +5,5 @@ import React from 'react';
  * @description Info component is for the About Us/Info page
  */
 export default function Info() {
-	return <div className="inner">Hello From Info</div>;
+  return <div className="inner">Hello From Info</div>;
 }

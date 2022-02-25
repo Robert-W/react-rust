@@ -5,5 +5,5 @@ import React from 'react';
  * @description Dashboard component for a page full of visualizations
  */
 export default function Dashboard() {
-	return <div className="inner">Hello From Dashboard</div>;
+  return <div className="inner">Hello From Dashboard</div>;
 }

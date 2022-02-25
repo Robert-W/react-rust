@@ -11,23 +11,23 @@ import './app.scss';
  * @description Root application component
  */
 export default function App() {
-	// Setup our default state
-	let [state, setState] = useState(defaultAppState);
+  // Setup our default state
+  let [state, setState] = useState(defaultAppState);
 
-	// Use this hook to run on mount and unmount only
-	useEffect(() => {
-		// Subscribe to state changes
-		let unsubscribe = store.subscribe(() => setState(store.getState()));
+  // Use this hook to run on mount and unmount only
+  useEffect(() => {
+    // Subscribe to state changes
+    let unsubscribe = store.subscribe(() => setState(store.getState()));
 
-		// Unsubscribe before unmount
-		return unsubscribe;
-	}, []);
+    // Unsubscribe before unmount
+    return unsubscribe;
+  }, []);
 
-	return (
-		<ChakraProvider>
-			<header className="header">Default Settings</header>
-			<Body {...state} />
-			<footer className="footer">Default Settings</footer>
-		</ChakraProvider>
-	);
+  return (
+    <ChakraProvider>
+      <header className="header">Default Settings</header>
+      <Body {...state} />
+      <footer className="footer">Default Settings</footer>
+    </ChakraProvider>
+  );
 }

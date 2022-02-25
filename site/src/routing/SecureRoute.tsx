@@ -8,25 +8,25 @@ import React from 'react';
  * @param {*} props
  */
 export default function SecureRoute(props: any) {
-	let { path, exact, render, user, requiredRoles, ...rest } = props;
+  let { path, exact, render, user, requiredRoles, ...rest } = props;
 
-	return (
-		<Route
-			{...rest}
-			path={path}
-			exact={exact}
-			render={(routerProps) => {
-				let roles = user.getIn(['data', 'roles']) || [];
-				// Only render the target page if the user has the required roles
-				if (requiredRoles.isSubset(roles) || roles.includes('admin')) {
-					return render(routerProps);
-				}
-				// Redirect to the homepage when the incorrect page is accessed
-				else {
-					let to = { pathname: '/', state: { from: routerProps.location } };
-					return <Redirect to={to} />;
-				}
-			}}
-		/>
-	);
+  return (
+    <Route
+      {...rest}
+      path={path}
+      exact={exact}
+      render={(routerProps) => {
+        let roles = user.data.roles || [];
+        // Only render the target page if the user has the required roles
+        if (requiredRoles.every((role: string) => roles.includes(role)) || roles.includes('admin')) {
+          return render(routerProps);
+        }
+        // Redirect to the homepage when the incorrect page is accessed
+        else {
+          let to = { pathname: '/', state: { from: routerProps.location } };
+          return <Redirect to={to} />;
+        }
+      }}
+    />
+  );
 }

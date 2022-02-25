@@ -1,12 +1,24 @@
-import { Map, List } from 'immutable';
+export interface UserData {
+  roles: string[];
+}
+
+export interface User {
+  status: string;
+  error?: Error;
+  data?: UserData;
+}
+
+export interface AppState {
+  readonly user: User;
+}
 
 // Default application state
-export const defaultAppState = {
-	user: Map({
-		status: 'INCOMPLETE',
-		error: undefined,
-		data: Map({
-			roles: List(),
-		}),
-	}),
+export const defaultAppState: AppState = {
+  user: {
+    status: 'INCOMPLETE',
+    error: undefined,
+    data: {
+      roles: [],
+    },
+  },
 };
