@@ -4,9 +4,6 @@ import Links from '../routing/Links';
 import routes from '../routes';
 import Loader from './Loader';
 
-import { fetchUserById } from '../user/user.service';
-import store from '../store';
-
 /**
  * @function Body
  * @description Main body of our application
@@ -17,7 +14,6 @@ export default function Body(props: any) {
 
   // Run this effect when the components mounts, only once
   useEffect(() => {
-    store.dispatch(fetchUserById('12'));
     // This would be a good place to get our current user if we are using peer certificates for authentication
     // or do some other setup stuff. Depending on what your needs are
     setIsLoading(false);
