@@ -51,9 +51,10 @@ describe('Development Logger Tests', () => {
     expect(next).toHaveBeenCalledWith(action);
     expect(result).toEqual('RESULTS');
     // Check the logs
-    expect(console.log).toHaveBeenCalledTimes(2);
-    expect(console.log.mock.calls[0][0]).toContain(action.type);
-    expect(console.log.mock.calls[0][2]).toBe(action);
+    expect(console.log).toHaveBeenCalledTimes(4);
+    expect(console.log.mock.calls[0][2]).toContain(action.type);
     expect(console.log.mock.calls[1][2]).toContain(expected);
+    expect(console.log.mock.calls[2][2]).toBe(action);
+    expect(console.log.mock.calls[3][2]).toContain(expected);
   });
 });

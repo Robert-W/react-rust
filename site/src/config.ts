@@ -4,7 +4,7 @@ export interface UserData {
 
 export interface User {
   status: string;
-  error?: Error;
+  error?: string;
   data?: UserData;
 }
 
