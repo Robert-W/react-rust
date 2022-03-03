@@ -1,5 +1,4 @@
-use actix_web::{Error, HttpRequest, HttpResponse, Responder};
-use futures::future::{ready, Ready};
+use actix_web::{body::BoxBody, HttpRequest, HttpResponse, Responder};
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 use uuid::Uuid;
@@ -43,14 +42,15 @@ pub struct User {
 
 // Implement the responder trait to return the user struct
 impl Responder for User {
-    type Error = Error;
-    type Future = Ready<Result<HttpResponse, Error>>;
+    type Body = BoxBody;
+    //type Error = Error;
+    //type Future = Ready<Result<HttpResponse, Error>>;
 
-    fn respond_to(self, _req: &HttpRequest) -> Self::Future {
+    fn respond_to(self, _req: &HttpRequest) -> HttpResponse<Self::Body> {
         let body = serde_json::to_string(&self).unwrap();
 
-        ready(Ok(HttpResponse::Ok()
+        HttpResponse::Ok()
             .content_type("application/json")
-            .body(body)))
+            .body(body)
     }
 }

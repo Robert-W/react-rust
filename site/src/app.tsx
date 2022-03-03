@@ -1,6 +1,6 @@
+import { AppState, defaultAppState } from './config';
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { defaultAppState } from './config';
 import Body from './components/Body';
 import store from './store';
 
@@ -12,7 +12,7 @@ import './app.scss';
  */
 export default function App() {
   // Setup our default state
-  let [state, setState] = useState(defaultAppState);
+  let [state, setState] = useState<AppState>(defaultAppState);
 
   // Use this hook to run on mount and unmount only
   useEffect(() => {

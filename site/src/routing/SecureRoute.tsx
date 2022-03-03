@@ -1,5 +1,14 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, RouterProps } from 'react-router-dom';
+import { HttpRequest, UserData } from '../config';
 import React from 'react';
+
+interface SecureRouteProps {
+  render (props: RouterProps): JSX.Element;
+  requiredRoles: Array<string>;
+  user: HttpRequest<UserData>;
+  exact?: boolean;
+  path?: string;
+}
 
 /**
  * @function SecureRoute
@@ -7,7 +16,7 @@ import React from 'react';
  * the UI but they do not have permission to view it
  * @param {*} props
  */
-export default function SecureRoute(props: any) {
+export default function SecureRoute(props: SecureRouteProps) {
   let { path, exact, render, user, requiredRoles, ...rest } = props;
 
   return (
@@ -16,7 +25,7 @@ export default function SecureRoute(props: any) {
       path={path}
       exact={exact}
       render={(routerProps) => {
-        let roles = user.data.roles || [];
+        let roles: Array<string> = user && user.data ? user.data.roles : [];
         // Only render the target page if the user has the required roles
         if (requiredRoles.every((role: string) => roles.includes(role)) || roles.includes('admin')) {
           return render(routerProps);

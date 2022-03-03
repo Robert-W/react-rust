@@ -4,4 +4,4 @@
 RELEASE_VERSION=${1:-1.0.0}
 
 # Build our container
-docker build -t webapp:$RELEASE_VERSION -t webapp:latest .
+docker build --no-cache -t webapp:$RELEASE_VERSION -t webapp:latest .

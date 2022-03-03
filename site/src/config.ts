@@ -1,15 +1,22 @@
+/**
+  * This is our user model that contains all our user data
+  * Fill this out as necesary
+  */
 export interface UserData {
   roles: string[];
 }
 
-export interface User {
+/**
+  * This is a generic type that represents an HTTP request
+  */
+export interface HttpRequest<T> {
   status: string;
   error?: string;
-  data?: UserData;
+  data?: T;
 }
 
 export interface AppState {
-  readonly user: User;
+  readonly user: HttpRequest<UserData>;
 }
 
 // Default application state

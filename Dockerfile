@@ -1,5 +1,5 @@
 # Start with the rust api layer
-FROM rust:latest as rust
+FROM rust:1.59.0-slim-buster as rust
 # Add Dependencies needed for building for alpine
 RUN rustup target add x86_64-unknown-linux-musl
 RUN apt update && apt install -y musl-tools musl-dev pkg-config libssl-dev
@@ -9,6 +9,7 @@ COPY ./api/ /srv/api/
 WORKDIR /srv/api
 # Set some variables necesary for the build
 ARG PKG_CONFIG_ALLOW_CROSS=1
+ARG RUST_BACKTRACE=1
 RUN cargo build --target x86_64-unknown-linux-musl --features vendored --release
 
 
@@ -16,7 +17,7 @@ RUN cargo build --target x86_64-unknown-linux-musl --features vendored --release
 FROM node:16-alpine as node
 WORKDIR /srv
 COPY site/package.json site/webpack.env.js site/webpack.prod.js /srv/
-RUN npm install --production
+RUN apk add --no-cache python3 make g++ && npm install --production
 COPY site/plugins /srv/plugins/
 COPY site/src /srv/src/
 RUN npm run build

@@ -4,11 +4,15 @@ import React from 'react';
 
 import { RouteConfig } from '../routes';
 
+interface LinksProps {
+  routes: Array<RouteConfig>
+}
+
 /**
  * @function Links
  * @description Generates a set of navigation links
  */
-export default function Links({ routes = [] }: { routes: Array<RouteConfig> }) {
+export default function Links({ routes = [] }: LinksProps) {
   return (
     <React.Fragment>
       {routes

@@ -4,11 +4,13 @@ import Links from '../routing/Links';
 import routes from '../routes';
 import Loader from './Loader';
 
+import { AppState } from '../config';
+
 /**
  * @function Body
  * @description Main body of our application
  */
-export default function Body(props: any) {
+export default function Body(props: AppState) {
   // Set our default state
   let [isLoading, setIsLoading] = useState(false);
 
